@@ -1,0 +1,8 @@
+/* Signup page uses shared auth styles from Login.css */
+/* The .auth-page, .auth-wrapper, etc. classes are defined in Login.css */
+/* This file only has signup-specific overrides if needed */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Signup page shares all styles from Login.css via the shared auth-* classes */
+/* No additional styles needed since both pages use the same auth design system */

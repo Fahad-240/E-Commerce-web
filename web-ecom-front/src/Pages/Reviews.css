@@ -1,0 +1,240 @@
+/* ============================================
+   REVIEWS SECTION - Premium Light Theme
+   ============================================ */
+
+.reviews-section-container {
+  padding: 10px 0;
+}
+
+.reviews-header-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.reviews-header-inline h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.toggle-review-btn {
+  background: var(--bg-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-review-btn:hover {
+  background: var(--border-color);
+  color: var(--primary-color);
+}
+
+/* Inline Form Styling */
+.inline-review-form-wrapper {
+  background: var(--bg-light);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 40px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.premium-inline-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rating-selector-block {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.rating-selector-block span {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+}
+
+.interactive-stars {
+  display: flex;
+  gap: 6px;
+}
+
+.interactive-stars svg {
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.star-active {
+  color: #f59e0b;
+}
+
+.star-inactive {
+  color: #cbd5e1;
+}
+
+.interactive-stars svg:hover {
+  transform: scale(1.2);
+}
+
+.premium-inline-form textarea {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: white;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.premium-inline-form textarea:focus {
+  border-color: var(--primary-color);
+}
+
+.submit-review-inline-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary-color);
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+}
+
+.submit-review-inline-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3);
+}
+
+.submit-review-inline-btn:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Reviews Grid & Cards */
+.premium-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.no-reviews-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px;
+  background: var(--bg-light);
+  border-radius: 20px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.premium-review-card {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.premium-review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+
+.rev-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.rev-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-initials {
+  width: 40px;
+  height: 40px;
+  background: #f1f5f9;
+  color: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: 1px solid var(--border-color);
+}
+
+.rev-user-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.rev-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.rev-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.star-gold {
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+.star-muted {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.rev-comment {
+  line-height: 1.6;
+  color: #475569;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .premium-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
