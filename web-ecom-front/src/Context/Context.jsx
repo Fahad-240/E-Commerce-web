@@ -7,7 +7,7 @@ let data = {
     user: {},
     isLogin: false,
     cartCount: 0,
-    baseUrl: 'http://localhost:5004/api/v1'
+    baseUrl: import.meta.env.VITE_API_URL?.trim() || "http://localhost:5004/api/v1"
 }
 
 export default function ContextProvider({ children }) {
