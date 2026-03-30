@@ -17,9 +17,13 @@ const SECRET_KEY = process.env.SECRET_KEY || "your_jwt_secret_key";
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
-    credentials: true,
+  origin: true,
+  credentials: true,
 }));
+
+app.get("/", (req, res) => {
+  res.send("Backend working 🚀");
+});
 
 // Authentication Routes
 app.post("/api/v1/sign-up", async (req, res) => {
