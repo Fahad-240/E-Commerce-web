@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { GlobalContext } from '../Context/Context';
 import api from '../Component/api';
 import { FaUser, FaEnvelope, FaLock, FaShoppingBag } from 'react-icons/fa';
-import "./Signup.css";
+import "./SignUp.css";
 
 const Signup = () => {
   let { state } = useContext(GlobalContext);
