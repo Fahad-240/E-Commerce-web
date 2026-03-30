@@ -17,12 +17,12 @@ const SECRET_KEY = process.env.SECRET_KEY || "your_jwt_secret_key";
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: true,
-  credentials: true,
+    origin: true,
+    credentials: true,
 }));
 
 app.get("/", (req, res) => {
-  res.send("Backend working 🚀");
+    res.send("Backend working 🚀");
 });
 
 // Authentication Routes
@@ -130,14 +130,20 @@ app.post("/api/v1/logout", (req, res) => {
 // Category APIs
 app.get("/api/v1/categories", async (req, res) => {
     try {
-        let result = await db.query("SELECT * FROM categories ORDER BY category_id DESC");
+        const result = await db.query(
+            "SELECT * FROM categories ORDER BY category_name"
+        );
+
         res.status(200).send({
             message: "success",
-            category_list: result.rows,
+            data: result.rows,
         });
+
     } catch (error) {
-        console.log("error", error);
-        res.status(500).send({ message: "Internal server error" });
+        console.log("ERROR:", error);
+        res.status(500).send({
+            message: "Internal server error",
+        });
     }
 });
 
