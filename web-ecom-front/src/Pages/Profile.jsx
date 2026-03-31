@@ -5,29 +5,20 @@ import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 import { useNavigate } from "react-router";
 import { FaUserEdit, FaEnvelope, FaIdBadge, FaSignOutAlt } from "react-icons/fa";
-import "./profile.css";
+import "./Profile.css";
 
 const Profile = () => {
   const { state, dispatch } = useContext(GlobalContext);
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getProfile = async () => {
-      try {
-        let res = await api.get("/profile", {
-          headers: {
-            Authorization: `Bearer ${state?.token}`,
-          },
-        });
-        setUser(res.data.user);
-      } catch (err) {
-        console.log("Error fetching profile:", err);
-      }
-    };
+  const user = state.user;
 
-    getProfile();
-  }, [state?.token]);
+  useEffect(() => {
+    if (state.isLogin === false) {
+      navigate("/login");
+    }
+  }, [state.isLogin, navigate]);
+
 
   const handleLogout = async () => {
     try {

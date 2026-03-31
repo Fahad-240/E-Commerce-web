@@ -28,7 +28,7 @@ const AddProduct = () => {
     try {
       let res = await api.get("/categories");
       if (res.status === 200) {
-        setCategoryList(res.data.category_list);
+        setCategoryList(res.data.data || []);
       }
     } catch (error) {
       console.error("Error fetching categories:", error);

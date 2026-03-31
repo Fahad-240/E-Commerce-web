@@ -61,7 +61,7 @@ const Home = () => {
         ]);
         setProducts(prodRes.data.products);
         setFilteredProducts(prodRes.data.products);
-        setCategories(catRes.data.category_list || []);
+        setCategories(catRes.data.data || []);
       } catch (error) {
         console.error("Error fetching data:", error);
         toast.error("Failed to fetch home data");

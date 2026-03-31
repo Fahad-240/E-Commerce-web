@@ -30,7 +30,7 @@ const Navbar = () => {
   const fetchCategories = async () => {
     try {
       const res = await api.get("/categories");
-      setCategories(res.data.category_list || []);
+      setCategories(res.data.data || []);
     } catch (err) {
       console.error("Error fetching categories:", err);
     }

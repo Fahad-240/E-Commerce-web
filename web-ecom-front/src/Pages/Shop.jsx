@@ -52,7 +52,7 @@ const Shop = () => {
                     api.get("/categories")
                 ]);
                 setProducts(prodRes.data.products);
-                setCategories(catRes.data.category_list);
+                setCategories(catRes.data.data || []);
                 
                 // Set initial category from location state (from Navbar)
                 if (location.state?.category) {

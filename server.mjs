@@ -77,12 +77,15 @@ app.post("/api/v1/login", async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false, // Set to true in production
+            secure: true, 
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000,
         });
 
         res.cookie("user_id", user.user_id, {
             httpOnly: true,
+            secure: true,
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000,
         });
 
@@ -122,8 +125,16 @@ app.get("/api/v1/profile", async (req, res) => {
 });
 
 app.post("/api/v1/logout", (req, res) => {
-    res.clearCookie("token");
-    res.clearCookie("user_id");
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+    });
+    res.clearCookie("user_id", {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+    });
     res.status(200).send({ message: "Logout successful" });
 });
 
@@ -267,7 +278,16 @@ app.post("/api/v1/product", async (req, res) => {
       INSERT INTO products (product_name, description, price, category_id, product_image, is_sale, sale_percentage, original_price)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     `;
-        const values = [name, description, price, category_id, image, is_sale || false, sale_percentage || null, original_price || null];
+        const values = [
+            name, 
+            description, 
+            Number(price), 
+            Number(category_id), 
+            image, 
+            is_sale || false, 
+            sale_percentage ? Number(sale_percentage) : null, 
+            original_price ? Number(original_price) : null
+        ];
         await db.query(query, values);
         res.status(201).json({ message: "Product created successfully" });
     } catch (error) {
