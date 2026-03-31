@@ -33,35 +33,55 @@ const App = () => {
     getUserData();
   }, [dispatch]);
 
+  if (state.isLogin === null) {
+    return (
+      <div className="app-loading-container">
+        <div className="loading-spinner"></div>
+        <p>loading .....</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {
-        state.isLogin === true ? (
-          <Routes>
-            <Route path="/category" element={<Category />} />
-            <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="*" element={<Navigate to="/home" />} />
+      <Routes>
+        {/* ===== Public Routes (Anyone can see) ===== */}
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
 
+        {/* ===== Protected Routes (Login required) ===== */}
+        <Route 
+          path="/cart" 
+          element={state.isLogin ? <Cart /> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/profile" 
+          element={state.isLogin ? <Profile /> : <Navigate to="/login" />} 
+        />
+        <Route 
+          path="/checkout" 
+          element={state.isLogin ? <Checkout /> : <Navigate to="/login" />} 
+        />
+        
+        {/* ===== Admin Routes (Role 1 required) ===== */}
+        <Route 
+          path="/add-product" 
+          element={state.isLogin && state.user?.user_role == 1 ? <AddProduct /> : <Navigate to="/home" />} 
+        />
+        <Route 
+          path="/category" 
+          element={state.isLogin && state.user?.user_role == 1 ? <Category /> : <Navigate to="/home" />} 
+        />
 
-          </Routes>
-        ) : state.isLogin === false ? (
-          <Routes>
-            <Route path="/sign-up" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="*" element={<Navigate to="/login" />} />
-          </Routes>
-        ) : (
-          <p>loading .....</p>
-        )
-      }
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/home" />} />
+      </Routes>
     </div>
   );
 };
