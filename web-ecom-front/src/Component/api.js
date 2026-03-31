@@ -2,8 +2,7 @@
 import axios from "axios";
 
 const baseURL =
-    import.meta.env.VITE_API_URL?.trim() ||
-    (window.location.protocol === "http:" ? "http://localhost:5004/api/v1" : "/api/v1");
+    import.meta.env.VITE_API_URL?.trim() || "https://e-commerce-web-production-89a1.up.railway.app/api/v1";
 
 const api = axios.create({
     baseURL,
